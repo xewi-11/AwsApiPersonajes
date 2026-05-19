@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(p => p.AddPolicy("corsenabled", options =>
+{
+    options.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 builder.Services.AddDbContext<TelevisionContext>(options =>
     options.UseMySQL(builder.Configuration.GetConnectionString("AwsMySql")));
 // Add services to the container.
