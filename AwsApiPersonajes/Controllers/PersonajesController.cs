@@ -1,4 +1,5 @@
-﻿using AwsApiPersonajes.Repositories;
+﻿using AwsApiPersonajes.Models;
+using AwsApiPersonajes.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AwsApiPersonajes.Controllers
@@ -23,9 +24,9 @@ namespace AwsApiPersonajes.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult> CreatePersonaje(string nombre, string imagen)
+        public async Task<ActionResult> CreatePersonaje(Personaje personaje)
         {
-            await this.repo.CreatePersonajeAsync(nombre, imagen);
+            await this.repo.CreatePersonajeAsync(personaje.Nombre, personaje.Imagen);
             return Ok();
         }
     }
